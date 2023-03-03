@@ -8,7 +8,7 @@ export default {
   components: { navbar,Griditem, SearchBar }, 
   data() {
     return {
-      result: "eeee",
+      result: "ee",
       count: 0,
       apiKey: '',
       gridItems: []
