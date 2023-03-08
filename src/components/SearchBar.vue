@@ -19,9 +19,7 @@ export default{
         msg: input,
         content: "./src/assets/apod_test.jpg"
       };
-      console.log("inputted");
       this.$emit("new-item-added", newItem);
-      console.log("emitted")
     }
     },
     mounted(){
@@ -34,7 +32,7 @@ export default{
     <div class="Search">
         <input class="SearchInput" v-model="searchBarInput" type="text" placeholder="asteroid name"/> 
         <button class="SearchButton" v-on:click="$emit('search-event', searchBarInput)">Search</button>
-        <button class="SearchButton" @click="addItem(searchBarInput)">Add Item</button>
+        <button class="SearchButton" v-on:click="addItem(searchBarInput)">Add Item</button>
     </div>
 </template>
 

@@ -14,7 +14,7 @@ export default {
       gridItems: []
     }
   },
-  methods: {
+  methods: {  
     sendMessage($event){
       return sendMessage($event)
     },
@@ -67,7 +67,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: minmax(100px, auto);
-  grid-gap: 20px;
+  grid-gap: 0px;
   border: 2px solid red;
   justify-content: center;
   align-items: center;
