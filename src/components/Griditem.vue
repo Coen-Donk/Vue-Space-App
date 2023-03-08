@@ -7,51 +7,62 @@ export default {
         },
         content:String,
         info:String
+    },
+    data(){
+      return{
+        aspectRatio: null
+      }
+    },
+    computed: {
+    aspectRatio() {
+      // Calculate the aspect ratio of the image based on its dimensions
+      const img = new Image()
+      img.src = this.content
+      img.onload = () => {
+      const aspectRatio = img.width / img.height
+      this.aspectRatio = aspectRatio.toFixed(2);
+      console.log(this.aspectRatio)
+      };
+      }
     }
-}
+  }
 </script>
 
 <template>
-    <div class="gridcontent">
-        <img class="image" v-bind:src="content">
+    <div class="gridcontent" v-bind:style="{ backgroundImage: `url(${content})`, aspectRatio: aspectRatio }">
         <h5 class="text">{{ msg }}</h5>
     </div>
 </template>
 
 <style>
 .gridcontent {
-  background-color: purple;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  width: auto;
+
   align-items: center;
   text-align: center;
-  height: auto;
-  width: auto;
-  margin: 20px;
+  margin: 10px;
   border: 1px solid black;
   position: relative;
-}
-
-.image {
-  max-width: 70%;
-  max-height: 70%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  height: auto;
-  margin-bottom: 10px;
-  border: none;
+  aspect-ratio: 0.97
 }
 
 h5 {
   position: absolute;
-  bottom: 0;
+  justify-content: center;
+  float: left;
   width: 100%;
+  bottom: 0;
   padding-top: 10px;
   padding-bottom: 10px;
   margin: 0;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.342);
   color: purple;
 }
 
