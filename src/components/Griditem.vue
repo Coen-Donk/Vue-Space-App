@@ -10,26 +10,30 @@ export default {
     },
     data(){
       return{
-        aspectRatio: null
+        aspectRatio: 0
       }
     },
-    computed: {
-    aspectRatio() {
-      // Calculate the aspect ratio of the image based on its dimensions
+    methods: {
+    CalcAspectRatio() {
       const img = new Image()
       img.src = this.content
       img.onload = () => {
-      const aspectRatio = img.width / img.height
-      this.aspectRatio = aspectRatio.toFixed(2);
-      console.log(this.aspectRatio)
+      var TempAspectRatio = img.width / img.height
+      TempAspectRatio = TempAspectRatio.toFixed(2);
+      console.log(TempAspectRatio)
+      this.aspectRatio = TempAspectRatio
+        console.log(TempAspectRatio)
       };
       }
+    },
+    mounted() {
+     this.CalcAspectRatio()
     }
   }
 </script>
 
 <template>
-    <div class="gridcontent" v-bind:style="{ backgroundImage: `url(${content})`, aspectRatio: aspectRatio }">
+    <div class="gridcontent" v-on:create="CalcAspectRatio" v-bind:style="{ backgroundImage: `url(${content})`, aspectRatio: aspectRatio }">
         <h5 class="text">{{ msg }}</h5>
     </div>
 </template>
@@ -50,7 +54,6 @@ export default {
   margin: 10px;
   border: 1px solid black;
   position: relative;
-  aspect-ratio: 0.97
 }
 
 h5 {
