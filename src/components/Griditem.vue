@@ -1,4 +1,7 @@
 <script>
+import useEventBus from "../modules/eventbus"
+import { watch } from "vue"
+
 export default {
     props: {
         msg: {
@@ -10,7 +13,8 @@ export default {
     },
     data(){
       return{
-        aspectRatio: 0
+        aspectRatio: 0,
+        itemname: ""
       }
     },
     methods: {
@@ -28,13 +32,19 @@ export default {
     },
     mounted() {
      this.CalcAspectRatio()
-    }
+
+     const {bus} = useEventBus();
+       watch(()=>bus.value.get('data-received'), (val) => {
+      const [dataReceivedBus] = val ?? []
+      this.itemname = dataReceivedBus
+       })
   }
+}
 </script>
 
 <template>
     <div class="gridcontent" v-on:create="CalcAspectRatio" v-bind:style="{ backgroundImage: `url(${content})`, aspectRatio: aspectRatio }">
-        <h5 class="text">{{ msg }}</h5>
+        <h5 class="text">{{ itemname }}</h5>
     </div>
 </template>
 
