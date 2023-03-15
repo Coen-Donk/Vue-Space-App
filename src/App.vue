@@ -49,7 +49,7 @@ export default {
   <body>
     <navbar />
     <div class="header">
-      <SearchBar v-on:search-event="sendMessage($event)" @new-item-added="addItem"/>
+      <SearchBar v-on:search-event="sendMessage($event)" v-on:new-item-added="addItem" v-on:search-event-add="sendMessage($event)"/>
     </div>
     <div class="Grid">
       <Griditem class="item1" msg="I am item 1" content="./src/assets/apod_test.jpg"/>
