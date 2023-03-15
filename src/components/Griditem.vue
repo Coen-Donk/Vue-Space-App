@@ -24,9 +24,7 @@ export default {
       img.onload = () => {
       var TempAspectRatio = img.width / img.height
       TempAspectRatio = TempAspectRatio.toFixed(2);
-      console.log(TempAspectRatio)
       this.aspectRatio = TempAspectRatio
-        console.log(TempAspectRatio)
       };
       }
     },
@@ -44,7 +42,7 @@ export default {
 
 <template>
     <div class="gridcontent" v-on:create="CalcAspectRatio" v-bind:style="{ backgroundImage: `url(${content})`, aspectRatio: aspectRatio }">
-        <h5 class="text">{{ itemname }}</h5>
+        <h5 class="text">{{ msg }}</h5>
     </div>
 </template>
 
@@ -76,7 +74,7 @@ h5 {
   padding-bottom: 10px;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.342);
-  color: purple;
+  color: black;
 }
 
 </style>
