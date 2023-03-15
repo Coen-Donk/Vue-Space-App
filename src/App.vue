@@ -52,7 +52,7 @@ export default {
       <SearchBar v-on:search-event="sendMessage($event)" v-on:new-item-added="addItem" v-on:search-event-add="sendMessage($event)"/>
     </div>
     <div class="Grid">
-      <Griditem class="item1" msg="I am item 1" content="/src/assets/apod_test.jpg"/>
+      <Griditem class="item1" msg="I am item 1" content="assets/apod_test.jpg"/>
     <div v-for="(item, index) in gridItems" :key="index" :class="'item' + (index + 2)">
       <Griditem class="item2" :msg="item.msg" :content="item.content"/>
     </div>
