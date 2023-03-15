@@ -18,7 +18,7 @@ export default{
         addItem(input) {
       const newItem = {
         msg: input,
-        content: "./src/assets/apod_test.jpg"
+        content: "assets/apod_test.jpg"
       };
       this.$emit("new-item-added", newItem);
     }
