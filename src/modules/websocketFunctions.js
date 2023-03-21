@@ -23,7 +23,7 @@ socket.onerror = function(error) {
 };
 
 export function sendMessage(message){
-    socket.send(message)
+    socket.send(JSON.stringify({data: message}))
 }
 
 function parse(message){
