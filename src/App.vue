@@ -3,6 +3,10 @@ import navbar from './components/navbar.vue';
 import Griditem from './components/Griditem.vue'
 import SearchBar from './components/SearchBar.vue'
 import {sendMessage} from './modules/websocketFunctions.js'
+import useEventBus from './modules/eventbus';
+import { onMounted } from 'vue';
+
+const { bus } = useEventBus();
 
 export default {
   components: { navbar,Griditem, SearchBar }, 
@@ -13,31 +17,17 @@ export default {
       apiKey: '',
       gridItems: []
     }
-  },
+  }, 
   methods: {  
     sendMessage($event){
       return sendMessage($event)
     },
-    async fetchAPIData() {
-      this.responseAvailable = false;
-      await fetch("https://ssd-api.jpl.nasa.gov/nhats.api?des=2021 JG6", {
-        "method": "GET",
-      }).then(Response => {
-        if (Response.ok) {
-          return Response.json()
-        } else {
-          alert("Server returned " + Response.status + " : " + Response.statusText)
-        }
-      }).then(Response => {
-        this.result = Response;
-        this.responseAvailable = true;
-      }).catch(err => {
-        console.log(err)
-      })
-    },
     addItem(newItem) {
       this.gridItems = [...this.gridItems, newItem]
       console.log(this.gridItems[this.gridItems.length - 1].msg);
+    },
+    HandleConnectionClosed(){
+      console.log("I noticed the connection closed")
     }
   }
 }
@@ -47,12 +37,13 @@ export default {
   <html>
 
   <body>
-    <navbar />
+    <navbar/>
     <div class="header">
       <SearchBar v-on:search-event="sendMessage($event)" v-on:new-item-added="addItem" v-on:search-event-add="sendMessage($event)"/>
     </div>
     <div class="Grid">
       <Griditem class="item1" msg="I am item 1" content="assets/apod_test.jpg"/>
+      <Griditem class="item1" msg="Vikas Chander" content="https://apod.nasa.gov/apod/image/2303/TaurusDust_Chander_4096.jpg"/>
     <div v-for="(item, index) in gridItems" :key="index" :class="'item' + (index + 2)">
       <Griditem class="item2" :msg="item.msg" :content="item.content"/>
     </div>
@@ -72,7 +63,7 @@ export default {
   justify-content: center;
   align-items: center;
   overflow: auto;
-  margin-top: 50px;
+  margin-top: 60px;
   max-width: 85%; 
   margin-left: auto;
   margin-right: auto; 

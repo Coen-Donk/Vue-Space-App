@@ -27,9 +27,6 @@ export default{
     const {bus} = useEventBus();
        watch(()=>bus.value.get('data-received'), (val) => {
       const [dataReceivedBus] = val ?? []
-
-      console.log(dataReceivedBus + "hi?")
-
       var input = "asteroid " + JSON.parse(dataReceivedBus).fullname + " Has a magnitude of " + JSON.parse(dataReceivedBus).obs_mag + " and was discovered on " + JSON.parse(dataReceivedBus).des
         console.log(input + "input")
       this.addItem(input)
@@ -48,9 +45,10 @@ export default{
 
 <style>
     .Search{
+    margin-top: 10px;
     overflow: hidden;
     z-index: 1000;
-    position: fixed;
+    position: relative;
     }
 
     .SearchButton {
@@ -77,6 +75,8 @@ export default{
     white-space: nowrap;
     cursor: pointer;
     bottom: 1000px;
+
+    margin-right: 10px;
     }
 
     .SearchButton:active,
