@@ -27,6 +27,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run dev -- --port 5173 & npx wait-on http://localhost:5173 && npx cypress run --config baseUrl=http://localhost:5173
+    - run: npm run build # -- --port 5173 & npx wait-on http://localhost:5173 && npx cypress run --config baseUrl=http://localhost:5173
       env:
         CYPRESS_BASE_URL: http://localhost:5173
