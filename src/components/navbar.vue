@@ -21,7 +21,7 @@ ul {
   margin: 0;
   padding : 0;
   overflow: hidden;
-  background-color: #333;
+  background-image: url('/assets/nav-background.png');
   position: fixed;
   width: 80%;
   top: 0;
@@ -43,6 +43,6 @@ li a {
 }
 
 li a:hover {
-  background-color: red;
+  background-color: rgb(0, 89, 255);
 }
 </style>
