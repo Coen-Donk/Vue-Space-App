@@ -38,7 +38,7 @@ export default{
 <template>
     <div class="Search">
         <input class="SearchInput" v-model="searchBarInput" type="text" placeholder="asteroid name"/> 
-        <button class="SearchButton" v-on:click="$emit('search-event', searchBarInput)">Search</button>
+        <button class="SearchButton" id="Search" v-on:click="$emit('search-event', searchBarInput)">Search</button>
         <button class="SearchButton" v-on:click="$emit('search-event', searchBarInput)">Add Item</button>
     </div>
 </template>
