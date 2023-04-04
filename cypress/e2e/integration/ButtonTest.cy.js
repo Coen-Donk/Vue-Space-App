@@ -1,6 +1,6 @@
 describe('Search functionality', () => {
   it('can search for an asteroid and display its information', () => {
-    cy.visit('https://vue-space-app.vercel.app/') 
+    cy.visit('http://localhost:5173/') 
 
     cy.get('.SearchInput').type('2021 jg6') 
     cy.get('.SearchButton').eq(0).click() 
