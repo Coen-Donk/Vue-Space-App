@@ -7,7 +7,7 @@ on:
   push:
     branches: [ "Production" ]
   pull_request:
-    branches: [ "Production" ]
+    branches: [ "Development" ]
 
 jobs:
   build:
