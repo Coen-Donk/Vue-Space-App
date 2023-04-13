@@ -1,4 +1,3 @@
-
 import useEventBus from "./eventbus";
 
 var socket = null
@@ -15,7 +14,7 @@ function startWebsocket(){
 
   socket.onmessage = function(event) {
       var asteroiddata = event.data
-      emit('data-received', asteroiddata)
+      emit('data-received', parse(asteroiddata))
   };
 
   socket.onclose = function(event) {
@@ -49,7 +48,20 @@ function triangularSeries(n){
   }
 }
 
-export function sendMessage(message){
+async function connect() {
+  return new Promise((resolve) => {
+    if (socket.readyState === WebSocket.OPEN) {
+      resolve();
+    } else {
+      socket.addEventListener("open", () => {
+        resolve();
+      });
+    }
+  });
+}
+
+export async function sendMessage(message){
+    await connect();
     socket.send(JSON.stringify({data: message}))
 }
 

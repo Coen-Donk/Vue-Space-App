@@ -28,7 +28,6 @@ export default{
        watch(()=>bus.value.get('data-received'), (val) => {
       const [dataReceivedBus] = val ?? []
       var input = "asteroid " + JSON.parse(dataReceivedBus).fullname + " Has a magnitude of " + JSON.parse(dataReceivedBus).obs_mag + " and was discovered on " + JSON.parse(dataReceivedBus).des
-        console.log(input + "input")
       this.addItem(input)
        })
   }

@@ -22,7 +22,6 @@ export default {
     },
     addItem(newItem) {
       this.gridItems = [...this.gridItems, newItem]
-      console.log(this.gridItems[this.gridItems.length - 1].msg);
     }
   }
 }
