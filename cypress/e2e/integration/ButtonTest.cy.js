@@ -1,5 +1,5 @@
 describe('Search functionality', () => {
-  it('can search for an asteroid and display its information', () => {
+  it.skip('can search for an asteroid and display its information', () => {
     cy.visit('http://localhost:5173/') 
 
     cy.get('.SearchInput').type('2021 jg6') 

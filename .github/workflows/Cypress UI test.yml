@@ -2,7 +2,7 @@ name: UI test
 
 on:
   push:
-    branches: [testing]
+    branches: [Testing]
 
 jobs:
   test:
@@ -11,27 +11,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install dependencies
         run: npm install
-
-      - name: Start application
-        run: npm run serve
-
-      - name: Wait for application to become available
-        run: |
-          until nc -z localhost 5173; do sleep 1; done
-        timeout-minutes: 5
-
+        
       - name: Run Cypress UI test
         uses: cypress-io/github-action@v2
         with:
+          command: npx cypress run
           browser: chrome
-          headless: true
-          record: true
-          start: npm start
-          spec: cypress/e2e/integration/ButtonTest.cy.js
+
