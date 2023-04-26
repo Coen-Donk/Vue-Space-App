@@ -2,8 +2,10 @@
 import { sendMessage } from '../modules/websocketFunctions';
 import useEventBus from "../modules/eventbus"
 import { watch } from "vue"
+import AsteroidList from '../components/AsteroidViewComp/AsteroidList.vue';
 
 export default {
+  components:{AsteroidList},
   data() {
     return {
       recasteroids: [],
@@ -25,16 +27,7 @@ export default {
       const [dataReceivedBus] = val ?? []
       console.log(dataReceivedBus)
       this.recasteroids.push(dataReceivedBus)
-      // console.log(this.recasteroids)
-
     })
-  },
-  computed: {
-    filteredAsteroids() {
-      return this.recasteroids.filter((asteroid) => {
-        return asteroid.des.toLowerCase().includes(this.searchTerm.toLowerCase());
-      });
-    },
   },
   methods: {
     showDetails(asteroid) {
@@ -57,25 +50,7 @@ export default {
 <template>
   <v-container class="grey lighten-3 fluid" elevation="10">
     <v-row>
-      <v-col cols="12" md="6">
-        <v-card class="pa-4">
-          <v-row>
-            <v-col cols="10">
-              <v-text-field label="Search asteroid" v-model="searchTerm"></v-text-field>
-            </v-col>
-            <v-col cols="2" class="d-flex align-center justify-center">
-              <v-btn color="primary" @click="search">Search</v-btn>
-            </v-col>
-          </v-row>
-          <v-list>
-            <v-list-item v-for="asteroid in filteredAsteroids" :key="asteroid.id" @click="showDetails(asteroid)">
-              <v-list-item-content>
-                <v-list-item-title class="grey--text text--darken-2">{{ asteroid.des }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
+      <AsteroidList/>
       <v-col cols="12" md="6">
         <v-card class="pa-4">
           <v-card-title>{{ selectedAsteroid ? selectedAsteroid.name : 'No asteroid selected' }}</v-card-title>
@@ -92,8 +67,6 @@ export default {
 </template>
 
 <style>
-
-
 .fluid {
   display: flex;
   justify-content: center;

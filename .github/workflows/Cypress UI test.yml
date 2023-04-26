@@ -11,24 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install dependencies
         run: npm install
-
-      - name: Disable GPU for Electron
-        run: |
-          export ELECTRON_DISABLE_GPU=1
-          echo "ELECTRON_DISABLE_GPU=$ELECTRON_DISABLE_GPU"
-
+        
       - name: Run Cypress UI test
         uses: cypress-io/github-action@v2
         with:
+          command: npx cypress run
           browser: chrome
-          headless: true
-          record: true
-          start: npm run build
-          spec: cypress/e2e/integration/ButtonTest.cy.js
