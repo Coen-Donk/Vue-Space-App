@@ -25,5 +25,5 @@ jobs:
           browser: chrome
           headless: true
           record: true
-          start: npm start
+          start: npm run build
           spec: cypress/e2e/integration/ButtonTest.cy.js
