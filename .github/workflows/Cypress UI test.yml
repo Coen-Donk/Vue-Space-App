@@ -19,14 +19,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start application
-        run: npm run dev
-
-      - name: Wait for application to become available
-        run: |
-          until nc -z localhost 5173; do sleep 1; done
-        timeout-minutes: 5
-
       - name: Run Cypress UI test
         uses: cypress-io/github-action@v2
         with:
