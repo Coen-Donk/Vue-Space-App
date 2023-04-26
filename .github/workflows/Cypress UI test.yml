@@ -2,7 +2,7 @@ name: UI test
 
 on:
   push:
-    branches: [testing]
+    branches: [Testing]
 
 jobs:
   test:
@@ -19,13 +19,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start application
-        run: npm run serve
-
-      - name: Wait for application to become available
+      - name: Disable GPU for Electron
         run: |
-          until nc -z localhost 5173; do sleep 1; done
-        timeout-minutes: 5
+          export ELECTRON_DISABLE_GPU=1
+          echo "ELECTRON_DISABLE_GPU=$ELECTRON_DISABLE_GPU"
 
       - name: Run Cypress UI test
         uses: cypress-io/github-action@v2
@@ -33,5 +30,5 @@ jobs:
           browser: chrome
           headless: true
           record: true
-          start: npm start
+          start: npm run build
           spec: cypress/e2e/integration/ButtonTest.cy.js
