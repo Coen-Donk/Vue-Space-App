@@ -19,6 +19,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Disable GPU for Electron
+        run: |
+          export ELECTRON_DISABLE_GPU=1
+          echo "ELECTRON_DISABLE_GPU=$ELECTRON_DISABLE_GPU"
       - name: Run Cypress UI test
         uses: cypress-io/github-action@v2
         with:
@@ -27,5 +31,3 @@ jobs:
           record: true
           start: npm run build
           spec: cypress/e2e/integration/ButtonTest.cy.js
-        env:
-          ELECTRON_DISABLE_GPU: 1
