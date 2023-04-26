@@ -27,3 +27,5 @@ jobs:
           record: true
           start: npm run build
           spec: cypress/e2e/integration/ButtonTest.cy.js
+        env:
+          ELECTRON_DISABLE_GPU: 1
