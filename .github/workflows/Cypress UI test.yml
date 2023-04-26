@@ -30,4 +30,4 @@ jobs:
           headless: true
           record: true
           start: npm run build
-          spec: cypress/e2e/integration/ButtonTest.cy.js
+          spec: cypress/e2e/2-advanced-examples/actions.cs.js
