@@ -2,7 +2,7 @@ name: UI test
 
 on:
   push:
-    branches: [testing]
+    branches: [Testing]
 
 jobs:
   test:
